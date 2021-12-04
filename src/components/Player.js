@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
       "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
     border: "none",
     backgroundColor: "#00003d",
-    color: "white",
+    color: "#FAF9F6",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -46,6 +46,23 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  trimButtonHint: {
+    width: "150px",
+    backgroundColor: "rgba(0,0,0,0.9)",
+    color: "#FAF9F6",
+    textAlign: "center",
+    padding: "10px",
+    borderRadius: "20px",
+    position: "absolute",
+    top: "50px",
+  },
+  trimButtonContainer: {
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
   },
 }));
 
@@ -67,6 +84,7 @@ function Player() {
   const navigate = useNavigate();
   const [initialDuration, setInitialDuration] = useState();
   const [wavesurfer, setWavesurfer] = useState(undefined);
+  const [showTrimButtonHint, setShowTrimButtonHint] = useState(false);
 
   useEffect(() => {
     if (waveformRef.current) {
@@ -120,12 +138,11 @@ function Player() {
         tempWaveSurfer.play();
 
         tempWaveSurfer.addRegion({
-          start: 0, // time in seconds
-          end: tempWaveSurfer.getDuration(), // time in seconds
+          start: 0,
+          end: tempWaveSurfer.getDuration(),
           color: "hsla(10, 10%, 10%, 0.1)",
           loop: false,
           multiple: false,
-          // drag: false
         });
 
         tempWaveSurfer.addMarker({
@@ -216,6 +233,8 @@ function Player() {
       loop: false,
       multiple: false,
     });
+
+    setIsPlaying(true);
   }
 
   return (
@@ -235,10 +254,23 @@ function Player() {
           />
         )}
         <Replay onClick={replayClicked} style={buttonStyles} fontSize="large" />
-        <button className={classes.trimButton} onClick={trim}>
-          <ContentCut fontSize="small" />
-          <span style={{ marginLeft: "5px" }}>Trim</span>
-        </button>
+        <div className={classes.trimButtonContainer}>
+          <button
+            className={classes.trimButton}
+            onClick={trim}
+            onMouseEnter={() => setShowTrimButtonHint(true)}
+            onMouseLeave={() => setShowTrimButtonHint(false)}
+          >
+            <ContentCut fontSize="small" />
+            <span style={{ marginLeft: "5px" }}>Trim</span>
+          </button>
+          {showTrimButtonHint && (
+            <div className={classes.trimButtonHint}>
+              Please drag the markers A and B located at the start and end of
+              the audio
+            </div>
+          )}
+        </div>
         <div className={classes.volumeSlider}>
           <VolumeDown />
           <input
