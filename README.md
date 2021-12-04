@@ -1,6 +1,6 @@
-#This project is deployed on - [Audio-Editor](http://relaxed-roentgen-9bdd44.netlify.app)
+# This App is Deployed on - [Audio-Editor](http://relaxed-roentgen-9bdd44.netlify.app)
 
-#External Libraries used
+# External Libraries used
 
 1. Material ui
 2. wavesurfer.js
