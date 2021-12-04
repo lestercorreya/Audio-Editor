@@ -1,3 +1,10 @@
+# This App is Deployed on - [Audio-Editor](http://relaxed-roentgen-9bdd44.netlify.app)
+
+# External Libraries used
+
+1. Material ui
+2. wavesurfer.js
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
