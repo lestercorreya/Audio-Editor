@@ -5,6 +5,9 @@
 1. Material ui
 2. wavesurfer.js
 
+# Note
+While using the trim functionality, please click and drag the vertical slider and not the yellow or blue knob or else the marker will not move.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
